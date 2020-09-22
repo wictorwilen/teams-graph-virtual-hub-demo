@@ -1,0 +1,11 @@
+{
+  "generator-teams": {
+    "promptValues": {
+      "developer": "Wictor Wilen",
+      "unitTestsEnabled": false,
+      "useAzureAppInsights": false
+    },
+    "libraryName": "teamsGraph",
+    "generator-version": "2.16.0-preview2"
+  }
+}
