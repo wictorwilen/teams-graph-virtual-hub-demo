@@ -45,6 +45,8 @@ export class TeamsGraphTab extends TeamsBaseComponent<ITeamsGraphTabProps, ITeam
                         const decoded: { [key: string]: any; } = jwt_decode(token) as { [key: string]: any; };
                         this.setState({ name: decoded!.name });
                         microsoftTeams.appInitialization.notifySuccess();
+
+
                         Axios.get(`https://${process.env.HOSTNAME}/api/photo`, {
                             responseType: "blob",
                             headers: {
@@ -61,7 +63,6 @@ export class TeamsGraphTab extends TeamsBaseComponent<ITeamsGraphTabProps, ITeam
                                     this.setState({ image: r.result });
                                 }
                             };
-
                         }).catch(err => {
                             if (err.message === "Request failed with status code 400") {
                                 this.setState({ requireConsent: true });
@@ -69,6 +70,7 @@ export class TeamsGraphTab extends TeamsBaseComponent<ITeamsGraphTabProps, ITeam
                                 this.setState({ error: err.message });
                             }
                         });
+
 
                         Axios.get(`https://${process.env.HOSTNAME}/api/settings/` + context.groupId, {
                             headers: {
@@ -83,6 +85,8 @@ export class TeamsGraphTab extends TeamsBaseComponent<ITeamsGraphTabProps, ITeam
                                 this.setState({ error: err.message });
                             }
                         });
+
+
 
                     },
                     failureCallback: (message: string) => {
@@ -129,7 +133,7 @@ export class TeamsGraphTab extends TeamsBaseComponent<ITeamsGraphTabProps, ITeam
                                 />}
 
                             <div>
-                                <Image avatar src={this.state.image} styles={{ padding: "5px" }} sizes="largest"/>
+                                <Image avatar src={this.state.image} styles={{ padding: "5px" }} sizes="largest" />
                                 <Text content={`Hello ${this.state.name}`} />
                             </div>
 

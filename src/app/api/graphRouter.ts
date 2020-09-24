@@ -60,6 +60,9 @@ export const graphRouter = (options: any): express.Router => {
                 if (err.message === "Request failed with status code 400") {
                     // error code 400 likely means you have not done an admin consent on the app
                     reject({ status: 400 });
+                } else if (err.message === "Request failed with status code 401") {
+                    // error code 401 - did you forget to add the client secret?
+                    reject({ status: 401 });
                 } else {
                     reject(err);
                 }
